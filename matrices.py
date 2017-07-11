@@ -53,6 +53,13 @@ def crearMatriz(matriz):
                 matriz[numeroMatriz][k].append(x)#agrego el valor al final de la fila que acabamos de crear
         numeroMatriz += 1
 
+def verificarCantidad(matriz):
+    cantidad = len(matriz)
+    if cantidad > 0:
+        return True
+    else:
+        return False
+
 def mostrarMatrices(matriz):
     contadorMatrices = 1
     algo = ''
@@ -106,8 +113,23 @@ def sumarMatrices(matriz,matrizSuma):
     else:
         print 'Las filas no coinciden'
 
-def multiplicarMatrices(matriz, matrisMulti):
-    print 'Hola'
+def multiplicarMatrices(matriz, matrizMulti):
+    if verificarCantidad(matriz):
+        mostrarMatrices(matriz)
+        elegirMatriz1 = int(raw_input('Elige una matriz: '))
+        if matriz[elegirMatriz1 - 1] in matriz:
+            mostrarMatrices(matriz)
+            elegirMatriz2 = int(raw_input('Elige una matriz: '))
+            if matriz[elegirMatriz2 - 1] in matriz:
+                filaMatriz1, colMatriz1, filaMatriz2, colMatriz2 = verificarDimensionMatrices(matriz, elegirMatriz1, elegirMatriz2)
+                if colMatriz1 == filaMatriz2:
+                    print 'A multiplicar'
+            else:
+                print 'La matriz que selecciono no se encuentra creada'
+        else:
+            print 'La matriz que selecciono no se encuentra creada'
+    else:
+        print 'No hay matrices'
 
 def main():
     while True:
