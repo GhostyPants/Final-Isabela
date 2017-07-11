@@ -1,17 +1,28 @@
+#-*- coding: utf-8 -*-
 from os import system
 matrices = []#arreglo padre de matrices creadas
 suma = []#arreglo padre de matrices sumadas
 multiplicacion = []#arreglo padre de matrices multiplicadas
 
-def menu():
+def menuPrincipal():
+    print '''
+ ======Menu Principal======
+    1) Hallar la raiz de una ecuacion trascendental
+    2) Manipulacion de matrices
+    3) Sistema de ecuaciones
+    4) Salir
+    '''
+
+def menuMatrices():
     print '''
     1) Crear una matriz
     2) Ver las matrices
     3) Eliminar una matriz
     4) Operaciones de matrices
+    5) Volver al menu anterior
     '''
 
-def menuMostrar():
+def menuMostrarMatrices():
     print '''
  ======Cuales Matrices desea ver======
     1) Matrices creadas
@@ -141,21 +152,56 @@ def multiplicarMatrices(matriz, matrizMulti):
     else:
         print 'No hay matrices'
 
-def main():
-    while True:
-        menu()
-        opc = int(raw_input('\n elige una opcion: '))
-        if opc == 1:
-            crearMatriz(matrices)#Si si el usuario eligio la opcion uno del menu se ejecutara este bloque de codigo que es la funcion de crear matrices
-        elif opc == 2:
-            menuMostrar()
-            #Si si el usuario eligio la opcion uno del menu se ejecutara este bloque de codigo que es la funcion de mostrar la o las matrices
-        elif opc == 3:
-            eliminarMatriz(matrices)
-        elif opc == 4:
-            menuOperaciones(matrices, suma, multiplicacion)
-        else:
-            system('cls')
-            break#si no se escoge ninguna opcion se cierra el programa
+def funcionNewton(x):
+    y = pow(x, 2)-3.0*x-4
+    return (y)
 
-main()
+def derivar(x):
+    d=(2*x)-3
+    return (d)
+
+def mainNewton():
+    print "Método de Newton-Raphson"
+    x=float(raw_input('Introduce el valor de inicio '))
+    erroru=float(raw_input('Introduce el error '))
+    raiz=[]
+    raiz.insert(0,0)
+    i=0
+    error=1
+    while abs(error) > erroru:
+        x1=x-(funcionNewton(x)/derivar(x))
+        raiz.append(x1)
+        i += 1
+        x = x1
+        error=(raiz[i]-raiz[i-1])/raiz[i]
+        print x
+
+
+while True:
+    menuPrincipal()
+    opc = int(raw_input('\n elige una opcion: '))
+    if opc == 1:
+        pass
+    elif opc == 2:
+        while True:
+            menuMatrices()
+            op = int(raw_input('\n elige una opcion: '))
+            if op == 1:
+                crearMatriz(matrices)#Si si el usuario eligio la opcion uno del menu se ejecutara este bloque de codigo que es la funcion de crear matrices
+            elif op == 2:
+                menuMostrarMatrices()
+                #Si si el usuario eligio la opcion uno del menu se ejecutara este bloque de codigo que es la funcion de mostrar la o las matrices
+            elif op == 3:
+                eliminarMatriz(matrices)
+            elif op == 4:
+                menuOperaciones(matrices, suma, multiplicacion)
+            elif op == 5:
+                break
+            else:
+                print 'Esa opcion no se encuentra'
+    elif opc == 3:
+        pass
+    elif opc == 4:
+        break
+    else:
+        print 'Esa opcion no se encuentra'
