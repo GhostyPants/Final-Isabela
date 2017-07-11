@@ -100,7 +100,6 @@ def eliminarMatriz(matriz):
 def sumarMatrices(matriz,matrizSuma):
     iterador = 0
     numeroMatrices = len(matrizSuma)
-    # print numeroMatrices
     mostrarMatrices(matriz)
     elegirMatriz1 = int(raw_input("Elige una de las matrices para sumarla: "))
     if matrices[elegirMatriz1 - 1] in matrices:
@@ -142,25 +141,25 @@ def multiplicarMatrices(matriz, matrizMulti):
                             valor = 0
                             for i in range(colMatriz1):
                                 valor += matriz[elegirMatriz1 - 1][filas][i] * matriz[elegirMatriz2 - 1][i][columnas]
-                            # print 'Valor =',valor,'en',filas + 1,',',columnas+1
+                            print 'Valor =',valor,'en',filas + 1,',',columnas+1
                             matrizMulti[numeroMatrices][filas].append(valor)
                     # print matrizMulti
             else:
-                print 'La matriz que selecciono no se encuentra creada'
+                print '\n La matriz que selecciono no se encuentra creada'
         else:
-            print 'La matriz que selecciono no se encuentra creada'
+            print '\n La matriz que selecciono no se encuentra creada'
     else:
-        print 'No hay matrices'
-
-def funcionNewton(x):
-    y = pow(x, 2)-3.0*x-4
-    return (y)
-
-def derivar(x):
-    d=(2*x)-3
-    return (d)
+        print '\n No hay matrices para multiplicar'
 
 def mainNewton():
+    def funcionNewton(x):
+        y = pow(x, 2)-3.0*x-4
+        return (y)
+
+    def derivar(x):
+        d=(2*x)-3
+        return (d)
+
     print "Método de Newton-Raphson"
     x=float(raw_input('Introduce el valor de inicio '))
     erroru=float(raw_input('Introduce el error '))
