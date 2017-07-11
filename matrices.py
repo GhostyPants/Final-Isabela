@@ -121,9 +121,18 @@ def multiplicarMatrices(matriz, matrizMulti):
             mostrarMatrices(matriz)
             elegirMatriz2 = int(raw_input('Elige una matriz: '))
             if matriz[elegirMatriz2 - 1] in matriz:
+                numeroMatrices = len(matrizMulti)
                 filaMatriz1, colMatriz1, filaMatriz2, colMatriz2 = verificarDimensionMatrices(matriz, elegirMatriz1, elegirMatriz2)
                 if colMatriz1 == filaMatriz2:
-                    print 'A multiplicar'
+                    matrizMulti.append([])
+                    for filas in range(filaMatriz1):
+                        matrizMulti[numeroMatrices].append([])
+                        for columnas in range(colMatriz2):
+                            valor = 0
+                            for i in range(colMatriz1):
+                                print matriz[elegirMatriz1 - 1][filas][i],'Este es de la matriz 1'
+                                print matriz[elegirMatriz2 - 1][i][columnas],'este es de la matriz 2'
+                    print matrizMulti
             else:
                 print 'La matriz que selecciono no se encuentra creada'
         else:
