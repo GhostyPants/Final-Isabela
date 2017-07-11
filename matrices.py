@@ -130,9 +130,10 @@ def multiplicarMatrices(matriz, matrizMulti):
                         for columnas in range(colMatriz2):
                             valor = 0
                             for i in range(colMatriz1):
-                                print matriz[elegirMatriz1 - 1][filas][i],'Este es de la matriz 1'
-                                print matriz[elegirMatriz2 - 1][i][columnas],'este es de la matriz 2'
-                    print matrizMulti
+                                valor += matriz[elegirMatriz1 - 1][filas][i] * matriz[elegirMatriz2 - 1][i][columnas]
+                            # print 'Valor =',valor,'en',filas + 1,',',columnas+1
+                            matrizMulti[numeroMatrices][filas].append(valor)
+                    # print matrizMulti
             else:
                 print 'La matriz que selecciono no se encuentra creada'
         else:
