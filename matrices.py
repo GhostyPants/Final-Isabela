@@ -244,6 +244,7 @@ while True:
             print '''
             1) Metodo de Newton-Raphson
             2) Metodo de la secante
+            3) Salir
             '''
             op = int(raw_input('Elige una opcion: '))
             if op == 1:
