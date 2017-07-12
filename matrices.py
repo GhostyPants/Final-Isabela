@@ -94,7 +94,7 @@ def verificarDimensionMatrices(matrizPadre, indiceMatriz1, indiceMatriz2):
 
 def eliminarMatriz(matriz):
     mostrarMatrices(matriz)
-    elegirMatriz = int(raw_input("Elige que matriz desea eliminar: "))
+    elegirMatriz = int(raw_input(" Elige que matriz desea eliminar: "))
     if matrices[elegirMatriz - 1] in matriz:
         matrices.pop(elegirMatriz - 1)
 
@@ -102,10 +102,10 @@ def sumarMatrices(matriz,matrizSuma):
     iterador = 0
     numeroMatrices = len(matrizSuma)
     mostrarMatrices(matriz)
-    elegirMatriz1 = int(raw_input("Elige una de las matrices para sumarla: "))
+    elegirMatriz1 = int(raw_input(" Elige una de las matrices para sumarla: "))
     if matrices[elegirMatriz1 - 1] in matrices:
         mostrarMatrices(matriz)
-        elegirMatriz2 = int(raw_input("Elige una de las matrices para sumarla con la elegida anteriormente: "))
+        elegirMatriz2 = int(raw_input(" Elige una de las matrices para sumarla con la elegida anteriormente: "))
         if matrices[elegirMatriz2 - 1] in matrices:
             filaMatriz1, colMatriz1, filaMatriz2, colMatriz2 = verificarDimensionMatrices(matriz, elegirMatriz1, elegirMatriz2)
     if filaMatriz1 == filaMatriz2:
@@ -127,10 +127,10 @@ def sumarMatrices(matriz,matrizSuma):
 def multiplicarMatrices(matriz, matrizMulti):
     if verificarCantidad(matriz):
         mostrarMatrices(matriz)
-        elegirMatriz1 = int(raw_input('Elige una matriz: '))
+        elegirMatriz1 = int(raw_input(' Elige una matriz: '))
         if matriz[elegirMatriz1 - 1] in matriz:
             mostrarMatrices(matriz)
-            elegirMatriz2 = int(raw_input('Elige una matriz: '))
+            elegirMatriz2 = int(raw_input(' Elige una matriz: '))
             if matriz[elegirMatriz2 - 1] in matriz:
                 numeroMatrices = len(matrizMulti)
                 filaMatriz1, colMatriz1, filaMatriz2, colMatriz2 = verificarDimensionMatrices(matriz, elegirMatriz1, elegirMatriz2)
@@ -161,8 +161,8 @@ def mainNewton():
         d=(2*x)-3
         return (d)
 
-    print "Método de Newton-Raphson"
-    x=float(raw_input('Introduce el valor de inicio '))
+    print "\n Método de Newton-Raphson"
+    x=float(raw_input('\n Introduce el valor de inicio '))
     erroru=float(raw_input('Introduce el error '))
     raiz=[]
     raiz.insert(0,0)
@@ -181,11 +181,11 @@ def mainSecante():
         y=pow(x,2)-3.0*x-4
         return y
 
-    print "Método de la secante"
+    print "\n Método de la secante"
 
-    x1=float(raw_input('Introduce el valor de inicio x1: '))
+    x1=float(raw_input('\n Introduce el valor de inicio x1: '))
     x0=float(raw_input('Introduce el valor de inicio x0: '))
-    erroru=float(raw_input('Introduce el error '))
+    erroru=float(raw_input('\n Introduce el error '))
     raiz=[]
     raiz.insert(0,0)
     i=0
@@ -201,37 +201,34 @@ def mainSecante():
 
 def mainGauss():
     import numpy
-    filas=int(raw_input('Valor de filas:'))
-    columnas=int(raw_input('Valor de columnas:'))
+    filas=int(raw_input('\n Cuantas filas desea que tenga su :'))
+    columnas=int(raw_input('\n Valor de columnas:'))
     matrix = numpy.zeros((filas,columnas))
     vector= numpy.zeros((columnas))
     x=numpy.zeros((filas))
-    print 'Introduce la matriz de coeficientes y el vector solución columnas'
+    print '\n Introduce la matriz de coeficientes y el vector solución columnas'
     for r in range(filas):
         for c in range(columnas):
-            matrix[(r),(c)]=(raw_input("Elemento a["+str(r+1)+","+str(c+1)+"] "))
+            matrix[(r),(c)]=(raw_input("\n Elemento a["+str(r+1)+","+str(c+1)+"] "))
         vector[(r)]=(raw_input('b['+str(r+1)+']: '))
-    print(matrix)
     for k in range(filas):
         for r in range(k+1,filas):
             factor=(matrix[r,k]/matrix[k,k])
             vector[r]=vector[r]-(factor*vector[k])
             for c in range(0,columnas):
                 matrix[r,c]=matrix[r,c]-(factor*matrix[k,c])
-            print matrix
     #sustituciócolumnas hacia atrás
     x[filas-1]=vector[filas-1]/matrix[filas-1,filas-1]
-    print x[filas-1]
     for r in range(filas-2,-1,-1):
         suma = 0
         for c in range(0,columnas):
             suma=suma+matrix[r,c]*x[c]
         x[r]=(vector[r]-suma)/matrix[r,r]
-    print 'Resultado matriz'
+    print '\n Resultado matriz'
     print(matrix)
-    print 'Resultado del vector'
+    print '\n Resultado del vector'
     print(vector)
-    print 'Resultados: '
+    print '\n Resultados: '
     print(x)
 
 
