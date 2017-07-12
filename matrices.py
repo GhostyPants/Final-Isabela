@@ -15,6 +15,7 @@ def menuPrincipal():
 
 def menuMatrices():
     print '''
+ ======Menu Matrices======
     1) Crear una matriz
     2) Ver las matrices
     3) Eliminar una matriz
@@ -175,12 +176,84 @@ def mainNewton():
         error=(raiz[i]-raiz[i-1])/raiz[i]
         print x
 
+def mainSecante():
+    def funcionSecante(x):
+        y=pow(x,2)-3.0*x-4
+        return y
+
+    print "Método de la secante"
+
+    x1=float(raw_input('Introduce el valor de inicio x1: '))
+    x0=float(raw_input('Introduce el valor de inicio x0: '))
+    erroru=float(raw_input('Introduce el error '))
+    raiz=[]
+    raiz.insert(0,0)
+    i=0
+    error=1
+    while abs(error) > erroru:
+        x2 = x1 - (poli(x1)*(x1-x0))/(poli(x1)-poli(x0))
+        raiz.append(x2)
+        x0 = x1
+        x1 = x2
+        i += 1
+        error=(raiz[i]-raiz[i-1])/raiz[i]
+        print x2
+
+def mainGauss():
+    import numpy
+    filas=int(raw_input('Valor de filas:'))
+    columnas=int(raw_input('Valor de columnas:'))
+    matrix = numpy.zeros((filas,columnas))
+    vector= numpy.zeros((columnas))
+    x=numpy.zeros((filas))
+    print 'Introduce la matriz de coeficientes y el vector solución columnas'
+    for r in range(filas):
+        for c in range(columnas):
+            matrix[(r),(c)]=(raw_input("Elemento a["+str(r+1)+","+str(c+1)+"] "))
+        vector[(r)]=(raw_input('b['+str(r+1)+']: '))
+    print(matrix)
+    for k in range(filas):
+        for r in range(k+1,filas):
+            factor=(matrix[r,k]/matrix[k,k])
+            vector[r]=vector[r]-(factor*vector[k])
+            for c in range(0,columnas):
+                matrix[r,c]=matrix[r,c]-(factor*matrix[k,c])
+            print matrix
+    #sustituciócolumnas hacia atrás
+    x[filas-1]=vector[filas-1]/matrix[filas-1,filas-1]
+    print x[filas-1]
+    for r in range(filas-2,-1,-1):
+        suma = 0
+        for c in range(0,columnas):
+            suma=suma+matrix[r,c]*x[c]
+        x[r]=(vector[r]-suma)/matrix[r,r]
+    print 'Resultado matriz'
+    print(matrix)
+    print 'Resultado del vector'
+    print(vector)
+    print 'Resultados: '
+    print(x)
+
+
 
 while True:
     menuPrincipal()
     opc = int(raw_input('\n elige una opcion: '))
     if opc == 1:
-        pass
+        while True:
+            print '''
+            1) Metodo de Newton-Raphson
+            2) Metodo de la secante
+            '''
+            op = int(raw_input('Elige una opcion: '))
+            if op == 1:
+                mainNewton()
+            elif op == 2:
+                mainSecante()
+            elif op == 3:
+                break
+            else:
+                print 'Esa opcion no se encuentra'
     elif opc == 2:
         while True:
             menuMatrices()
@@ -199,7 +272,7 @@ while True:
             else:
                 print 'Esa opcion no se encuentra'
     elif opc == 3:
-        pass
+        mainGauss()
     elif opc == 4:
         break
     else:
